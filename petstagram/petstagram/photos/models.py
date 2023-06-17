@@ -14,7 +14,7 @@ class Photo(models.Model):
     MAX_LOCATION_LENGTH = 30
 
     photo = models.ImageField(
-        upload_to='pet_photos/',
+        upload_to='Fpet_photos/',
         null=False,
         blank=True,
         validators=(

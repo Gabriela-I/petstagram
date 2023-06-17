@@ -9,6 +9,7 @@ class PhotoComment(models.Model):
         max_length=MAX_TEXT_LENGTH,
         null=False,
         blank=False,
+
     )
 
     publication_date_and_time = models.DateTimeField(
@@ -19,7 +20,7 @@ class PhotoComment(models.Model):
 
     photo = models.ForeignKey(
         Photo,
-        on_delete=models.RESTRICT,
+        on_delete=models.CASCADE,
         null=False,
         blank=True,
     )
@@ -28,7 +29,7 @@ class PhotoComment(models.Model):
 class PhotoLike(models.Model):
     photo = models.ForeignKey(
         Photo,
-        on_delete=models.RESTRICT,
+        on_delete=models.CASCADE,
         null=False,
         blank=True,
     )
