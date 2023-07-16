@@ -20,7 +20,7 @@ def index(request):
         photos = photos.filter(tagged_pets__name__icontains=search_pattern)
     photos = [apply_likes_count(photo) for photo in photos]
     photos = [apply_user_liked_photo(photo) for photo in photos]
-    
+
     context = {
         'photos': photos,
         'comment_form': CommentForm(),
@@ -31,12 +31,15 @@ def index(request):
 
 
 def like_photo(request, photo_id):
-    user_liked_photos = get_user_liked_photos(photo_id)
+    photo = Photo.objects.get(pk=photo_id)
+    user_liked_photos = PhotoLike.objects.filter(photo_id=photo, user=request.user).first()
+
     if user_liked_photos:
         user_liked_photos.delete()
     else:
         photo_like = PhotoLike(
             photo_id=photo_id,
+            user=request.user,
         )
         photo_like.save()
 
