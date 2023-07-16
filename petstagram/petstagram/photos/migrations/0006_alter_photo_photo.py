@@ -5,7 +5,7 @@ import petstagram.photos.validators
 
 
 class Migration(migrations.Migration):
-
+    atomic = False
     dependencies = [
         ('photos', '0005_rename_photos_photo'),
     ]
